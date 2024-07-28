@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fish Weight Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        input { margin: 10px; padding: 5px; }
+        button { padding: 10px; background-color: blue; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Fish Weight Prediction</h1>
+    <form id="predictionForm">
+        <label>Length1: <input type="text" id="length1" /></label><br />
+        <label>Length2: <input type="text" id="length2" /></label><br />
+        <label>Length3: <input type="text" id="length3" /></label><br />
+        <label>Height: <input type="text" id="height" /></label><br />
+        <label>Width: <input type="text" id="width" /></label><br />
+        <button type="button" onclick="getPrediction()">Predict</button>
+    </form>
+    <h2 id="result"></h2>
+
+    <script>
+        function getPrediction() {
+            const length1 = document.getElementById('length1').value;
+            const length2 = document.getElementById('length2').value;
+            const length3 = document.getElementById('length3').value;
+            const height = document.getElementById('height').value;
+            const width = document.getElementById('width').value;
+            
+            fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ length1, length2, length3, height, width })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = 'Predicted Weight: ' + data.prediction;
+            });
+        }
+    </script>
+</body>
+</html>
