@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fish Weight Predictor</title>
+</head>
+<body>
+    <h1>Fish Weight Predictor</h1>
+    <form action="{{ url_for('predict') }}" method="post">
+        <input type="number" name="Length1" placeholder="Length1" required="required" step="0.01" />
+        <input type="number" name="Length2" placeholder="Length2" required="required" step="0.01" />
+        <input type="number" name="Length3" placeholder="Length3" required="required" step="0.01" />
+        <input type="number" name="Height" placeholder="Height" required="required" step="0.01" />
+        <input type="number" name="Width" placeholder="Width" required="required" step="0.01" />
+        <button type="submit">Predict</button>
+    </form>
+    <br>
+    {{ prediction_text }}
+</body>
+</html>
